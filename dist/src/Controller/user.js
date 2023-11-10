@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteUserController = exports.rateProfessorController = exports.getSingleUserController = exports.getAlluserController = exports.loginController = exports.verifyEmailController = exports.registerController = void 0;
+const user_1 = require("../services/user");
+const registerController = (req, res, next) => (0, user_1.registerService)(req, res, next);
+exports.registerController = registerController;
+const verifyEmailController = (req, res, next) => (0, user_1.verifyEmailService)(req, res, next);
+exports.verifyEmailController = verifyEmailController;
+const loginController = (req, res, next) => (0, user_1.loginService)(req, res, next);
+exports.loginController = loginController;
+const getAlluserController = (req, res, next) => (0, user_1.getAllUser)(req, res);
+exports.getAlluserController = getAlluserController;
+const getSingleUserController = (req, res, next) => (0, user_1.getOneUser)(req, res, next);
+exports.getSingleUserController = getSingleUserController;
+const rateProfessorController = (req, res, next) => (0, user_1.rateProfessor)(req, res, next);
+exports.rateProfessorController = rateProfessorController;
+const deleteUserController = (req, res, next) => (0, user_1.deleteUser)(req, res, next);
+exports.deleteUserController = deleteUserController;
