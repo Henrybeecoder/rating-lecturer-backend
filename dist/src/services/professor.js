@@ -60,38 +60,6 @@ exports.getSingleProf = getSingleProf;
 //get All prof
 const GetAllProf = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // const professorsWithRatings = await Professor.aggregate([
-        //   {
-        //     $lookup: {
-        //       from: "Rating",
-        //       localField: "userId",
-        //       foreignField: "professorID",
-        //       as: "ratings",
-        //     },
-        //   },
-        //   {
-        //     $unwind: {
-        //       path: "$ratings",
-        //       preserveNullAndEmptyArrays: true,
-        //     },
-        //   },
-        //   {
-        //     $group: {
-        //       _id: "$_id", // Group by professor _id
-        //       userId: { $first: "$userId" },
-        //       Title: { $first: "$Title" },
-        //       Name: { $first: "$Name" },
-        //       Professional_Department: { $first: "$Professional_Department" },
-        //       school: { $first: "$school" },
-        //       ratings: { $push: "$ratings" }, // Create an array of ratings for each professor
-        //     },
-        //   },
-        //   {
-        //     $addFields: {
-        //       averageRate: { $avg: "$ratings.rating" }, // Calculate the average rating
-        //     },
-        //   },
-        // ]);
         const professorsWithRatings = yield Professor_1.default.aggregate([
             {
                 $lookup: {
@@ -166,6 +134,9 @@ function getRating(professorID) {
                     raters: { $push: "$userID" },
                     comments: { $push: "$comments" },
                     rating: { $push: "$rating" },
+                    difficulty: { $push: "$difficulty" },
+                    averDifficulty: { $avg: "$difficulty" },
+                    totalDifficulty: { $sum: "$difficulty" },
                 },
             },
         ]);
@@ -177,6 +148,9 @@ function getRating(professorID) {
                 raters: [],
                 comments: [],
                 rating: [],
+                difficulty: [],
+                averDifficulty: 0,
+                totalDifficulty: 0,
             };
         }
         return aggregateResult[0];

@@ -47,6 +47,7 @@ const ProfSchema = new mongoose_1.Schema({
         required: true,
     },
     ratings: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "Rating" }],
+    difficulty: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "Rating" }],
 }, { timestamps: true });
 const Professor = mongoose_1.default.model("Prof", ProfSchema);
 exports.default = Professor;

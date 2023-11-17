@@ -6,6 +6,8 @@ const ratingSchema = new mongoose_1.Schema({
     userID: { type: mongoose_1.Schema.Types.ObjectId },
     rating: { type: Number, min: 1, max: 5 },
     comments: { type: String },
+    difficulty: { type: Number, min: 1, max: 5 },
+    course_code: { type: String },
 }, {
     versionKey: false,
     timestamps: true,

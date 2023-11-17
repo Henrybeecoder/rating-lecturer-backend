@@ -268,7 +268,7 @@ function rateProfessor(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { userID, professorID } = req.params;
-            const { comments, rating } = req.body;
+            const { comments, rating, course_code, difficulty } = req.body;
             const user = yield User_1.default.findById(userID);
             const professor = yield Professor_1.default.findOne({ userId: professorID });
             if (!user && !professor) {
@@ -284,6 +284,8 @@ function rateProfessor(req, res, next) {
                 professorID,
                 comments,
                 rating,
+                course_code,
+                difficulty,
             });
             const data = yield rateProf.save();
             // console.log(data, "created");
